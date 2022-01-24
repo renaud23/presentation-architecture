@@ -12,14 +12,13 @@
     <link rel="stylesheet" href="dist/reset.css" />
     <link rel="stylesheet" href="dist/reveal.css" />
     <link rel="stylesheet" href="dist/theme/black.css" />
-
-    <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css" />
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
-        <section>L'architecture monolithique</section>
+        <!-- I - le monolithe et les appli maison -->
+        <section>I - L'architecture monolithique</section>
         <section>
           « Un monolithe est un bloc de grandes dimensions constitué d'un seul
           tenant. »
@@ -32,23 +31,23 @@
         </section>
 
         <!-- 
-			définition
-			----------
-			Une application monolithique et par extension une architecture monolithique est 
-			une application dont l'ensemble du code et des fonctionnalités sont implémentés 
-			dans un seul programme, au travers d'une seule base de données.
+          définition
+          ----------
+          Une application monolithique et par extension une architecture monolithique est 
+          une application dont l'ensemble du code et des fonctionnalités sont implémentés 
+          dans un seul programme, au travers d'une seule base de données.
 
-			commentaires
-			------------
-			- l'ensemble des couches applicatives sont liées au travers d'une seule réalisation.
-			- une base, le plus souvant relationnelle fédère l'ensemble de la donnée au travers d'un modèle métier unique.
-			- un seul dépot de code.
-			- dans sa version la plus hard, une seule instance de déploiment.
-		 -->
+          commentaires
+          ------------
+          - l'ensemble des couches applicatives sont liées au travers d'une seule réalisation.
+          - une base, le plus souvant relationnelle fédère l'ensemble de la donnée au travers d'un modèle métier unique.
+          - un seul dépot de code.
+          - dans sa version la plus hard, une seule instance de déploiment.
+		    -->
         <section>Dans la pratique, une situation plus nuancée.</section>
         <!-- 
-		  - à l'institut, comme dans le reste du monde la situation dans la pratique est plus nuancée.
-	  	-->
+          - à l'institut, comme dans le reste du monde la situation dans la pratique est plus nuancée. Le parc de l'institut est doté d'application plus complexe.
+        -->
         <section>
           <p>Les petites application « React »</p>
           <img
@@ -57,19 +56,24 @@
           />
         </section>
         <!-- 
-		  - depuis quelques années déjà, de nombreuses petites application.
-		  - séparation physique de la couche présentation.
-		  - plus un monolithe au sens strict du terme.
-		  - toutefois toute la logique métier concentrée dans le même code et les mêmes données.
-		  - au fond, pour une petite appli, tant que les inter-action exterieures restent limitées, c'est bien suffisant.
-	  	-->
-        <section>Des applications souvant plus complexes</section>
+          - depuis quelques années déjà, de nombreuses petites application.
+          - séparation physique de la couche présentation. Cette isolation franche facilite l'évoluvilité du client de présentation, voir sa refonte intégrale (onyxia par ex).
+          - le web-service conçu, s'il est conçu comme non couplé à l'ihm pourraut-être ouvert à d'autres usages, d'autres utilisateurs.
+          - plus un monolithe au sens strict du terme.
+          - toutefois toute la logique métier concentrée dans le même code et les mêmes données.
+          - au fond, pour une petite appli, tant que les inter-action exterieures restent limitées, c'est bien suffisant.
+          - toutefois, cette première expérience illustre déjà le bénéfice potentiel d'une architecture plus modulaire(même si ici on isole juste une couche)
+        -->
+        <section>
+          <p>Des applications souvant plus complexes</p>
+          <img src="./ressources/appli-insee.png" alt="application Insee" />
+        </section>
         <!-- 
-		 - la logique métier souvant répartit derrière plusieurs sous modules.
-		 - toujours une seule base de données et un seul modèle.
-		 - dans la pratique ça reste un monolithe ou chaque composant est prévu pour servir un système conçu et modélisé comme un seul bloc.
-		 - refaire un composant reste lourd et risqué pour les autres modules.
-	  	-->
+          - la logique métier souvant répartit derrière plusieurs sous-modules : le back, le front, l'appli de collecte, ....
+          - toujours une seule base de données et un seul modèle.
+          - dans la pratique ça reste un monolithe ou chaque composant est prévu pour servir un système conçu et modélisé comme un seul bloc.
+          - refaire un composant reste lourd et risqué pour les autres modules.
+        -->
         <section>
           <p>Les bénéfices de la simplicité</p>
           <ul>
@@ -78,30 +82,53 @@
             <li>moins couteux à court terme</li>
           </ul>
           <!--
-			  commentaires
-			  -----------
-			  - c'est ce que l'on sait faire et ce à quoi on nous prépare au travers des formations attachés et controleurs
-			  - plus simple à concevoir, à developper et à deployer. pas besoin de service transverse (broker, gestion de containers, ...)
-			  - moins couteux : moins de fragmentation = moins de code = moins de travail, moins d'env, pas d'inv ou moins transversaux.
-		  -->
+            commentaires
+            -----------
+            - c'est ce que l'on sait faire et ce à quoi on nous prépare au travers des formations attachés et controleurs
+            - plus simple à concevoir, à developper (code et version) et à deployer. pas besoin de service transverse (broker, gestion de containers, ...)
+            - moins couteux : moins de fragmentation = moins de code = moins de travail, moins d'env, pas d'inv ou moins transversaux.
+          -->
         </section>
         <section>
           <p>Oui mais, ...</p>
           <ul>
-            <li>maintenance plus complexe</li>
+            <li>maintenance complexe</li>
             <li>obsolécense inévitable</li>
             <li>couteux à long terme</li>
           </ul>
         </section>
         <!--
-			commentaires
-			------------
-			- gros ensemble ensemble de code aux fonctionnalités hétérogènes devient difficile à maintenir(correction et évolution) avec le temps.
-			- redéploiementcomplexe parfois pour quelques lignes seulement.
-			- socle technique verrouillé à la conception.
-			- obsolécence d'une pièce entraine l'obsolécense de l'ensemble.
-			- au final, une refonte tout les 5 ans = couteux à long terme.
-		-->
+          commentaires
+          ------------
+          - gros ensemble ensemble de code avec une forte intrication des fonctionnalités devient toujours plus difficile à maintenir au fil du temps (correction et évolution) avec le temps.
+          - redéploiement en production complexe, parfois pour quelques lignes seulement.
+          - socle technique verrouillé à la conception.
+          - obsolécence d'une pièce entraine l'obsolécense de l'ensemble.
+          - au final, une refonte tout les 5 ans = couteux à long terme.
+        -->
+        <!-- II - Principes et pattern -->
+        <section>II - Quelques principes et patterns d'architecture</section>
+        <section>Separation Of Concerne</section>
+        <section>Single Responsability Principle</section>
+        <!-- 
+          - SOC et SRP : ce sont 2 principes coutumiers pour tout développeur, appliqués au quotidien dans l'écriture de code.
+          (une classe n'a qu'une seule responsabilité. nom de package pour tracer des frontières, MVC consiste à séparer des spécificités de certaines fonctionnalités, ...) 
+          Il ne s'agit au fond que d'un passage à l'échelle de ces principes vers le disigne des architectures applicatives.
+        -->
+        <section>Command Query Response Segregation</section>
+        <section>Event Sourcing</section>
+        <!-- III - L'architecture de microservices -->
+        <section>principe</section>
+        <section>orchestration et chorégraphie</section>
+        <section>Intérêt et limites</section>
+        <section>A l'Insee</section>
+        <!-- SYNTHESE-->
+        <!-- 
+          - Pas besoin d'être Nexflix pour faire du micro service : quelques services (micro ou pas) c'est déjà bien.
+          - Une séparation physique, pas pour tout le monde : inutile de couper des grain de riz en 2.
+          - toutefois, même petit on peut quand même intégrer SOC et SRP dans le code.
+          - quelques mot sur les API et WS ?
+        -->
       </div>
     </div>
 
@@ -110,13 +137,8 @@
     <script src="plugin/markdown/markdown.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
     <script>
-      // More info about initialization & config:
-      // - https://revealjs.com/initialization/
-      // - https://revealjs.com/config/
       Reveal.initialize({
         hash: true,
-
-        // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
       });
     </script>
