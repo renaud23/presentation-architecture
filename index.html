@@ -109,19 +109,65 @@
         <!-- II - Principes et pattern -->
         <section>II - Quelques principes et patterns d'architecture</section>
         <section>Separation Of Concerne</section>
+        <!-- 
+          Principe de réalisation qui consiste à tracer des frontiéres pour isoler de grands ensembles fonctionnels selon des préoccupations métiers ou techniques spécifiques.
+          - ce traduit en général par l'isolation d'élèment cohérent d'information du système.
+          => principe applicable à plusieurs degrés : même pour un monolithe dans un seul dépôt le principe est envisageable.
+        -->
+        <section><img src="./ressources/3-tiers.png" alt="3 tiers" /></section>
+        <!--
+          Le 3 tiers est une séparation technique des couches applicatives, largement appliquée.
+        -->
+        <section><img src="./ressources/n-tiers.png" alt="3 tiers" /></section>
+        <!-- 
+          Séparation métier
+          - isolation des logiques distinctes selon les spécificités propre à chaque acteur.
+           isolation peut se formaliser :
+              . au niveau du code par des règles de nommage de classes/packages, des modules autonomes (Séparation logique).
+              . au niveau de l'architecture par des services isolées encapsulant données et fonctionnalités(Séparation physique).
+
+        -->
         <section>Single Responsability Principle</section>
         <!-- 
+          Principe de réalisation selon lequel chaque module, classe ou fonction ne doit être porteur que d'une seule fonctionnalité et l'encapsule.
+          Dit plus vulgairement un module, une classe ou une fonction ne fait " qu'une chose " 
+          - SOC peut-être perçu comme un ensemble cohérent de responsabilités. 
+          - principe bien connu des dev Java : une classe n'a qu'une seule responsabilité.
+          - Au fond, tout est affaire de sémantique : c'est le concepteur qui pose les mots définissant les responsabilités.
+        -->
+        <!-- 
           - SOC et SRP : ce sont 2 principes coutumiers pour tout développeur, appliqués au quotidien dans l'écriture de code.
-          (une classe n'a qu'une seule responsabilité. nom de package pour tracer des frontières, MVC consiste à séparer des spécificités de certaines fonctionnalités, ...) 
-          Il ne s'agit au fond que d'un passage à l'échelle de ces principes vers le disigne des architectures applicatives.
+          - séparation en module souvant effective à l'Insee, mais sans séparation physique (des données).
         -->
         <section>Command Query Response Segregation</section>
+        <!-- 
+          Le pattern CQRS (Command Query Responsibility Segregation) repose sur un principe simple : 
+          la séparation, au sein d’une application, des composants de traitement métier de l’information (“command” / écriture) et de restitution de l’information (“query” / lecture).
+          (extrait d'octo talk : https://blog.octo.com/cqrs-larchitecture-aux-deux-visages-partie-1/) 
+          - Grosso modo : on sépare les opérations de lecture des opérations d'écriture.
+          - Selon ce principe, la représentation de la donnée dans un système efficace n'est pas unique :
+            - une vision métier pour COMMANDS : facilitant la lisibilité et la compréhension des opérations d'écriture, jugées souvent plus complexes.
+            - une vision orienté présenation pour QUERIES : accélérant le processus de restitution de la données, en passant le modèle pour l'affichage
+             (dénormalisation de la data pour éviter de grosse jointure, souvent croisé des vues matérialisées ou des tables dont c'est la vocation)
+          - Pattern libre d'implémentation. : s'applique à des degrés différents :
+            - une petite application peu se contenter de séparer les responsabilités d'écriture au sein de classe distinctes
+            - un gros système pourra formaliser des services et des systèmes de stockage de données distincts. 
+        -->
         <section>Event Sourcing</section>
         <!-- III - L'architecture de microservices -->
+        <section>III - L'architecture de microservices</section>
         <section>principe</section>
         <section>orchestration et chorégraphie</section>
         <section>Intérêt et limites</section>
-        <section>A l'Insee</section>
+        <section>IV - Quelques mots sur le micro front-end</section>
+        <!-- 
+          - pour beaucoup d'entreprise, l'informatique c'est essentiellement leur application web, interface unique d'échange avec leur client.
+          Un macro service aiguille les requête vers n sous service selon le besoin concrêt de l'utilisateur. Derrière le système est libre de choisir son modèle d'architecture.
+          - elle aggrége des logiques métiers distinctes : logique commerciale, logistique, SAV ...
+          - appliquer les principes de division pour éviter de concevoir une seule grosse application qui résoud toutes ces logiques.
+          - une architecture de microservice n'est pas obligatoire : un seul système d'info et n service peut tout à faire suffire.
+        -->
+
         <!-- SYNTHESE-->
         <!-- 
           - Pas besoin d'être Nexflix pour faire du micro service : quelques services (micro ou pas) c'est déjà bien.
