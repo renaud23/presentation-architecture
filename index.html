@@ -158,13 +158,60 @@
         <!-- III - L'architecture de microservices -->
         <section>III - L'architecture de microservices</section>
         <section>principe</section>
+        <!-- 
+          définition
+          ----------
+          Technique d'architecture/ de conception logiciel où le système est structuré en un ensemble indépendant de services, faiblement couplés les un les autres.
+          - chaque service est conçu isolément comme une seule application.
+          - un mode d'organisation innovant : un service = une team (squad produit : une équipe auto organisationnée dont les membres se sont choisis et décident de la construction du produit)
+        -->
+        <section>
+          Un système hautement distribué
+          <img
+            src="./ressources/archi-microservices.png"
+            alt="isolation des microservices"
+          />
+        </section>
+        <section>
+          Chez les GAFAM : vers un réseau non prédictible
+          <img
+            src="./ressources/netflix-microservices.png"
+            alt="netflix microservices"
+          />
+        </section>
+        <!--
+          - on passe d'un seul système -> n applications faiblement couplées.
+          - SAO poussé à l'extrème
+        -->
+        <section>
+          <p>Un plus grand niveau d'isolation</p>
+          <img
+            src="./ressources/isolation-microservices.png"
+            alt="isolation des microservices"
+          />
+        </section>
+        <!--
+          - isolation au mieux des responsabilités : portage de SRP à l'échelle de l'architecture.
+          - isolation du code : jusqu'au runtime.
+          - isolation des données :séparation physique et conceptuelle de la données.
+        -->
+
+        <section>L'enjeu majeur de la cohérence transactionnelle</section>
         <section>orchestration et chorégraphie</section>
         <section>Intérêt et limites</section>
+        <!--
+          ++
+          - ne plus lier le destin de chacune des fonctionnalités d'un système.
+          -
+          --
+          - compléxité transactionnelle, rupture radicale de l'approche de la données pour nous.
+         -->
         <section>IV - Quelques mots sur le micro front-end</section>
         <!-- 
-          - pour beaucoup d'entreprise, l'informatique c'est essentiellement leur application web, interface unique d'échange avec leur client.
+          - pour beaucoup d'entreprise, l'interface client constitue l'enjeu majeur du SI (facebook, amazone, twitter ...) -> une trés, trés grosse application.
+          |=> besoin de structuration|d'isolation des fonctionnalités.
           Un macro service aiguille les requête vers n sous service selon le besoin concrêt de l'utilisateur. Derrière le système est libre de choisir son modèle d'architecture.
-          - elle aggrége des logiques métiers distinctes : logique commerciale, logistique, SAV ...
+          - elle aggrège des logiques métiers distinctes : logique commerciale, logistique, SAV ...
           - appliquer les principes de division pour éviter de concevoir une seule grosse application qui résoud toutes ces logiques.
           - une architecture de microservice n'est pas obligatoire : un seul système d'info et n service peut tout à faire suffire.
         -->
