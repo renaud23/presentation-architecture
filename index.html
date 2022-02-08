@@ -40,9 +40,9 @@
           commentaires
           ------------
           - l'ensemble des couches applicatives sont liées au travers d'une seule réalisation.
-          - une base, le plus souvant relationnelle fédère l'ensemble de la donnée au travers d'un modèle métier unique.
-          - un seul dépot de code.
-          - dans sa version la plus hard, une seule instance de déploiment.
+          - une base, le plus souvent relationnelle fédère l'ensemble de la donnée au travers d'un modèle métier unique.
+          - un seul dépôt de code.
+          - dans sa version la plus hard, une seule instance de déploiement.
 		    -->
         <section>Dans la pratique, une situation plus nuancée.</section>
         <!-- 
@@ -57,11 +57,11 @@
         </section>
         <!-- 
           - depuis quelques années déjà, de nombreuses petites application.
-          - séparation physique de la couche présentation. Cette isolation franche facilite l'évoluvilité du client de présentation, voir sa refonte intégrale (onyxia par ex).
-          - le web-service conçu, s'il est conçu comme non couplé à l'ihm pourraut-être ouvert à d'autres usages, d'autres utilisateurs.
+          - séparation physique de la couche présentation. Cette isolation franche facilite l'évolutivité du client de présentation, voir sa refonte intégrale (onyxia par ex).
+          - le web-service conçu, s'il est conçu comme non couplé à l'ihm pourrait-être ouvert à d'autres usages, d'autres utilisateurs.
           - plus un monolithe au sens strict du terme.
           - toutefois toute la logique métier concentrée dans le même code et les mêmes données.
-          - au fond, pour une petite appli, tant que les inter-action exterieures restent limitées, c'est bien suffisant.
+          - au fond, pour une petite appli, tant que les inter-action extérieures restent limitées, c'est bien suffisant.
           - toutefois, cette première expérience illustre déjà le bénéfice potentiel d'une architecture plus modulaire(même si ici on isole juste une couche)
         -->
         <section>
@@ -69,7 +69,7 @@
           <img src="./ressources/appli-insee.png" alt="application Insee" />
         </section>
         <!-- 
-          - la logique métier souvant répartit derrière plusieurs sous-modules : le back, le front, l'appli de collecte, ....
+          - la logique métier souvent répartit derrière plusieurs sous-modules : le back, le front, l'appli de collecte, ....
           - toujours une seule base de données et un seul modèle.
           - dans la pratique ça reste un monolithe ou chaque composant est prévu pour servir un système conçu et modélisé comme un seul bloc.
           - refaire un composant reste lourd et risqué pour les autres modules.
@@ -84,9 +84,9 @@
           <!--
             commentaires
             -----------
-            - c'est ce que l'on sait faire et ce à quoi on nous prépare au travers des formations attachés et controleurs
-            - plus simple à concevoir, à developper (code et version) et à deployer. pas besoin de service transverse (broker, gestion de containers, ...)
-            - moins couteux : moins de fragmentation = moins de code = moins de travail, moins d'env, pas d'inv ou moins transversaux.
+            - c'est ce que l'on sait faire et ce à quoi on nous prépare au travers des formations attachés et contrôleurs
+            - plus simple à concevoir, à développer (code et version) et à deployer. pas besoin de service transverse (broker, gestion de containers, ...)
+            - moins coûteux : moins de fragmentation = moins de code = moins de travail, moins d'env, pas d'inv ou moins transversaux.
           -->
         </section>
         <section>
@@ -137,7 +137,7 @@
         -->
         <!-- 
           - SOC et SRP : ce sont 2 principes coutumiers pour tout développeur, appliqués au quotidien dans l'écriture de code.
-          - séparation en module souvant effective à l'Insee, mais sans séparation physique (des données).
+          - séparation en module souvent effective à l'Insee, mais sans séparation physique (des données).
         -->
         <section>Command Query Response Segregation</section>
         <!-- 
@@ -147,7 +147,7 @@
           - Grosso modo : on sépare les opérations de lecture des opérations d'écriture.
           - Selon ce principe, la représentation de la donnée dans un système efficace n'est pas unique :
             - une vision métier pour COMMANDS : facilitant la lisibilité et la compréhension des opérations d'écriture, jugées souvent plus complexes.
-            - une vision orienté présenation pour QUERIES : accélérant le processus de restitution de la données, en passant le modèle pour l'affichage
+            - une vision orienté présentation pour QUERIES : accélérant le processus de restitution de la données, en passant le modèle pour l'affichage
              (dénormalisation de la data pour éviter de grosse jointure, souvent croisé des vues matérialisées ou des tables dont c'est la vocation)
           - Pattern libre d'implémentation. : s'applique à des degrés différents :
             - une petite application peu se contenter de séparer les responsabilités d'écriture au sein de classe distinctes
@@ -161,9 +161,14 @@
         <!-- 
           définition
           ----------
-          Technique d'architecture/ de conception logiciel où le système est structuré en un ensemble indépendant de services, faiblement couplés les un les autres.
-          - chaque service est conçu isolément comme une seule application.
-          - un mode d'organisation innovant : un service = une team (squad produit : une équipe auto organisationnée dont les membres se sont choisis et décident de la construction du produit)
+          Technique d'architecture/ de conception logiciel où le système est structuré en un ensemble indépendant de services simples, 
+          faiblement couplés les un les autres.
+          - chaque fonctionnalité du système,
+            - est isolé dans son propre runtime.
+            - possède son propre système de données.
+            - est conçu comme une application à part entière.
+          - un mode d'organisation innovant : un service = une team (squad produit : une équipe auto-organisée. 
+          (Les membres se sont choisis et décident de la construction du produit)
         -->
         <section>
           Un système hautement distribué
@@ -172,17 +177,6 @@
             alt="isolation des microservices"
           />
         </section>
-        <section>
-          Chez les GAFAM : vers un réseau non prédictible
-          <img
-            src="./ressources/netflix-microservices.png"
-            alt="netflix microservices"
-          />
-        </section>
-        <!--
-          - on passe d'un seul système -> n applications faiblement couplées.
-          - SAO poussé à l'extrème
-        -->
         <section>
           <p>Un plus grand niveau d'isolation</p>
           <img
@@ -193,26 +187,59 @@
         <!--
           - isolation au mieux des responsabilités : portage de SRP à l'échelle de l'architecture.
           - isolation du code : jusqu'au runtime.
-          - isolation des données :séparation physique et conceptuelle de la données.
+          - isolation des données : séparation physique et conceptuelle de la données.
         -->
-
-        <section>L'enjeu majeur de la cohérence transactionnelle</section>
+        <section>
+          Chez les GAFAM : vers un réseau non prédictible
+          <img
+            src="./ressources/netflix-microservices.jpg"
+            alt="netflix microservices"
+          />
+        </section>
+        <!--
+          - application de SPR à l'échelle de l'architecture pour limiter au mieux les responsabilités assumées par un service.
+          - C'est un système distribué comme SOA.
+          - côté technologie : les protocoles de l'internet, REST, les technologies de conteneurisation (K8S, istios, ). 
+        -->
+     
+        <section><p>L'enjeu majeur de la cohérence transactionnelle</p><img
+          src="./ressources/isolation-vs-consistance.png"
+          alt="isolation vs consistance"
+        /></section>
+        <!--  
+          A mesure où le système gagne en souplesse et en isolation, il perd en consistance. 
+          - La même information peut exister à des endroits différent selon les besoins propre de chaque service.
+          - Le système peut, sur un interval de temps se trouver à un état incohérent, le temps que l'information se propage dans le nuage de service.
+          quelques pistes :
+           - garder un seul runtime = monolithe forever
+           - un système transactionnel logiciel : ça existe mais c'est complexe et pas à l'abris des pannes.
+           - assumer les certains risques (ou relativiser leur gravité) et proposer des règles côté métier pour contourner certaines situations.
+        
+           un exemple : 
+           ------------
+           un site marchand avec une dispo d'une seule unité, dans un système de microservice peu se solder par la commande 
+           d'un produit indisponible, car vendu à l'instant même à un autre. Mais à bien y réfléchir, ce n'est pas un problème
+           de consistance et de gestion transactionnelle : comment a-t-on pu laisser le stock tomber à un niveau si bas ! 
+           L'ajout d'un simple règle métier peut prévenir ce genre de situation et même éviter des non ventes en limitant les indisponibilités 
+           de stock.
+        -->
         <section>orchestration et chorégraphie</section>
         <section>Intérêt et limites</section>
         <!--
           ++
           - ne plus lier le destin de chacune des fonctionnalités d'un système.
-          -
+          - plus complexe d'un point de vu technique, mais en divisant la complexité, plus facile à concevoir.
           --
-          - compléxité transactionnelle, rupture radicale de l'approche de la données pour nous.
+          - la complexité technique. plus d'env, plus d'outils pour coordonner l'ensemble des briques.
+          - complexité transactionnelle, rupture radicale de l'approche de la données pour nous.
          -->
         <section>IV - Quelques mots sur le micro front-end</section>
         <!-- 
           - pour beaucoup d'entreprise, l'interface client constitue l'enjeu majeur du SI (facebook, amazone, twitter ...) -> une trés, trés grosse application.
           |=> besoin de structuration|d'isolation des fonctionnalités.
-          Un macro service aiguille les requête vers n sous service selon le besoin concrêt de l'utilisateur. Derrière le système est libre de choisir son modèle d'architecture.
-          - elle aggrège des logiques métiers distinctes : logique commerciale, logistique, SAV ...
-          - appliquer les principes de division pour éviter de concevoir une seule grosse application qui résoud toutes ces logiques.
+          Un macro service aiguille les requête vers n sous service selon le besoin concrète de l'utilisateur. Derrière le système est libre de choisir son modèle d'architecture.
+          - elle agrège des logiques métiers distinctes : logique commerciale, logistique, SAV ...
+          - appliquer les principes de division pour éviter de concevoir une seule grosse application qui résout toutes ces logiques.
           - une architecture de microservice n'est pas obligatoire : un seul système d'info et n service peut tout à faire suffire.
         -->
 
