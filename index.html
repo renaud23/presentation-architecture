@@ -93,8 +93,8 @@
           <p>Oui mais, ...</p>
           <ul>
             <li>maintenance complexe</li>
-            <li>obsolécense inévitable</li>
-            <li>couteux à long terme</li>
+            <li>obsolescence inévitable</li>
+            <li>coûteux à long terme</li>
           </ul>
         </section>
         <!--
@@ -103,15 +103,15 @@
           - gros ensemble ensemble de code avec une forte intrication des fonctionnalités devient toujours plus difficile à maintenir au fil du temps (correction et évolution) avec le temps.
           - redéploiement en production complexe, parfois pour quelques lignes seulement.
           - socle technique verrouillé à la conception.
-          - obsolécence d'une pièce entraine l'obsolécense de l'ensemble.
-          - au final, une refonte tout les 5 ans = couteux à long terme.
+          - obsolescence d'une pièce entraîne l'obsolescence de l'ensemble.
+          - au final, une refonte tout les 5 ans = coûteux à long terme.
         -->
         <!-- II - Principes et pattern -->
         <section>II - Quelques principes et patterns d'architecture</section>
         <section>Separation Of Concerne</section>
         <!-- 
-          Principe de réalisation qui consiste à tracer des frontiéres pour isoler de grands ensembles fonctionnels selon des préoccupations métiers ou techniques spécifiques.
-          - ce traduit en général par l'isolation d'élèment cohérent d'information du système.
+          Principe de réalisation qui consiste à tracer des frontières pour isoler de grands ensembles fonctionnels selon des préoccupations métiers ou techniques spécifiques.
+          - ce traduit en général par l'isolation d'élément cohérent d'information du système.
           => principe applicable à plusieurs degrés : même pour un monolithe dans un seul dépôt le principe est envisageable.
         -->
         <section><img src="./ressources/3-tiers.png" alt="3 tiers" /></section>
@@ -139,6 +139,7 @@
           - SOC et SRP : ce sont 2 principes coutumiers pour tout développeur, appliqués au quotidien dans l'écriture de code.
           - séparation en module souvent effective à l'Insee, mais sans séparation physique (des données).
         -->
+        <section><img src="./ressources/SRP-function.png" alt="SRP with functions" /></section>
         <section>Command Query Response Segregation</section>
         <!-- 
           Le pattern CQRS (Command Query Responsibility Segregation) repose sur un principe simple : 
@@ -221,13 +222,13 @@
            d'un produit indisponible, car vendu à l'instant même à un autre. Mais à bien y réfléchir, ce n'est pas un problème
            de consistance et de gestion transactionnelle : comment a-t-on pu laisser le stock tomber à un niveau si bas ! 
            L'ajout d'un simple règle métier peut prévenir ce genre de situation et même éviter des non ventes en limitant les indisponibilités 
-           de stock.
+           de stock. Faire passer le métier devant la technique et ne pas voir les contraintes techniques comme un rampart systématique.
         -->
         <section>orchestration et chorégraphie</section>
         <section>Intérêt et limites</section>
         <!--
           ++
-          - ne plus lier le destin de chacune des fonctionnalités d'un système.
+          - ne plus lier le destin de chacune des fonctionnalités au travers d'un seul gros système.
           - plus complexe d'un point de vu technique, mais en divisant la complexité, plus facile à concevoir.
           --
           - la complexité technique. plus d'env, plus d'outils pour coordonner l'ensemble des briques.
@@ -245,7 +246,7 @@
 
         <!-- SYNTHESE-->
         <!-- 
-          - Pas besoin d'être Nexflix pour faire du micro service : quelques services (micro ou pas) c'est déjà bien.
+          - Pas besoin d'être Netflix pour faire du micro service : quelques services (micro ou pas) c'est déjà bien, déjà mieux.
           - Une séparation physique, pas pour tout le monde : inutile de couper des grain de riz en 2.
           - toutefois, même petit on peut quand même intégrer SOC et SRP dans le code.
           - quelques mot sur les API et WS ?
