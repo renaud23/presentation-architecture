@@ -158,11 +158,11 @@
         <section>Event Sourcing</section>
         <!-- III - L'architecture de microservices -->
         <section>III - L'architecture de microservices</section>
-        <section>principe</section>
+        <section><p>principe</p></section>
         <!-- 
           définition
           ----------
-          Technique d'architecture/ de conception logiciel où le système est structuré en un ensemble indépendant de services simples, 
+          Technique d'architecture et de conception logiciel où le système est structuré en un ensemble indépendant de services simples, 
           faiblement couplés les un les autres.
           - chaque fonctionnalité du système,
             - est isolé dans son propre runtime.
@@ -172,7 +172,7 @@
           (Les membres se sont choisis et décident de la construction du produit)
         -->
         <section>
-          Un système hautement distribué
+          Un système beaucoup plus distribué
           <img
             src="./ressources/archi-microservices.png"
             alt="isolation des microservices"
@@ -186,6 +186,7 @@
           />
         </section>
         <!--
+          Les microservices pousse à l'isolation potentiellement jusqu'à l'extrême.
           - isolation au mieux des responsabilités : portage de SRP à l'échelle de l'architecture.
           - isolation du code : jusqu'au runtime.
           - isolation des données : séparation physique et conceptuelle de la données.
@@ -224,8 +225,20 @@
            L'ajout d'un simple règle métier peut prévenir ce genre de situation et même éviter des non ventes en limitant les indisponibilités 
            de stock. Faire passer le métier devant la technique et ne pas voir les contraintes techniques comme un rampart systématique.
         -->
-        <section>orchestration et chorégraphie</section>
-        <section>Intérêt et limites</section>
+        <section>orchestration de microservices</section>
+        <!-- l'orchestration : 
+          - système placé au dessus du graph de service pour assurer sa cohérence globale.
+          - assure l'invocation/synchronisation des services jusqu'à l'obtention d'un état.
+          - assure les mesures correctives en cas de défaillance.
+
+          Dans la pratique consiste à décrire des workflows de processus métier, au travers de charts (BPMN specification) ou
+          directement dans un langage. Au fond cela ressemble un peu au scheduler (ordonnanceur) gros système, pour ceux qui ont connu ;)
+        -->
+        <section><img
+          src="./ressources/orchestration.png"
+          alt="orchestration"
+        /></section>
+        <section><p>Intérêt et limites du microservices</p>isolation vs consistence</section>
         <!--
           ++
           - ne plus lier le destin de chacune des fonctionnalités au travers d'un seul gros système.
