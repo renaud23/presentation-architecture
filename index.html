@@ -233,11 +233,25 @@
 
           Dans la pratique consiste à décrire des workflows de processus métier, au travers de charts (BPMN specification) ou
           directement dans un langage. Au fond cela ressemble un peu au scheduler (ordonnanceur) gros système, pour ceux qui ont connu ;)
+
+          - recouplage des services au travers du système d'orchestration (en contradiction avec l'esprit initiale des MS). 
+            Arbitrage isolation/consistence.
         -->
         <section><img
           src="./ressources/orchestration.png"
           alt="orchestration"
         /></section>
+        <section>La chorégraphie de microservices</section>
+        <!-- En s'inspirant des systèmes réactifs (events driven), la chorégraphie est un moyen d'assurer la mise en cohérence des microservices -->
+        <section><p>L'enjeu majeur de la cohérence transactionnelle</p><img
+          src="./ressources/choregraphie.png"
+          alt="chorégraphie de microservice"
+        /></section>
+        <!-- 
+          - un store d'events permet la circulation de l'info entre les services.
+          - évite le couplage des pièces du système.
+          - le gain en consistence reste limité par rapport à la chorégraphie.
+        -->
         <section><p>Intérêt et limites du microservices</p>isolation vs consistence</section>
         <!--
           ++
@@ -249,7 +263,7 @@
          -->
         <section>IV - Quelques mots sur le micro front-end</section>
         <!-- 
-          - pour beaucoup d'entreprise, l'interface client constitue l'enjeu majeur du SI (facebook, amazone, twitter ...) -> une trés, trés grosse application.
+          - pour beaucoup d'entreprise, l'interface client constitue l'enjeu majeur du SI (facebook, amazon, twitter ...) -> une très, trés grosse application.
           |=> besoin de structuration|d'isolation des fonctionnalités.
           Un macro service aiguille les requête vers n sous service selon le besoin concrète de l'utilisateur. Derrière le système est libre de choisir son modèle d'architecture.
           - elle agrège des logiques métiers distinctes : logique commerciale, logistique, SAV ...
@@ -257,9 +271,9 @@
           - une architecture de microservice n'est pas obligatoire : un seul système d'info et n service peut tout à faire suffire.
         -->
 
-        <!-- SYNTHESE-->
+        <!-- SYNTHÈSE -->
         <!-- 
-          - Pas besoin d'être Netflix pour faire du micro service : quelques services (micro ou pas) c'est déjà bien, déjà mieux.
+          - Pas besoin d'être Netflix pour faire du microservice ou au moins fractionner un peu son SI : quelques services (micro ou pas) c'est déjà bien, déjà mieux.
           - Une séparation physique, pas pour tout le monde : inutile de couper des grain de riz en 2.
           - toutefois, même petit on peut quand même intégrer SOC et SRP dans le code.
           - quelques mot sur les API et WS ?
