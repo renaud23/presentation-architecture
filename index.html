@@ -65,7 +65,7 @@
           - toutefois, cette première expérience illustre déjà le bénéfice potentiel d'une architecture plus modulaire(même si ici on isole juste une couche)
         -->
         <section>
-          <p>Des applications souvant plus complexes</p>
+          <p>Des applications souvent plus complexes</p>
           <img src="./ressources/appli-insee.png" alt="application Insee" />
         </section>
         <!-- 
@@ -110,7 +110,7 @@
         <section>II - Quelques principes et patterns d'architecture</section>
         <section>Separation Of Concerne</section>
         <!-- 
-          Principe de réalisation qui consiste à tracer des frontières pour isoler de grands ensembles fonctionnels selon des préoccupations métiers ou techniques spécifiques.
+          Principe de réalisation qui consiste à tracer des frontières pour isoler les grands ensembles fonctionnels ou techniques.
           - ce traduit en général par l'isolation d'élément cohérent d'information du système.
           => principe applicable à plusieurs degrés : même pour un monolithe dans un seul dépôt le principe est envisageable.
         -->
@@ -156,6 +156,18 @@
         -->
         <section><img src="./ressources/CQRS.png" alt="3 tiers" /></section>
         <section>Event Sourcing</section>
+        <!-- 
+          l'ES est un pattern d'architecture dans lequel la trace de l'état de chaque
+           entité n'est pas assuré au travers d'une seule base relationnelle, mais en validant et conservant
+           l'ensemble des évènement qui affecte ces états, dans un store spécialisé.
+            - L'état courant est l'aggregation de tout les évènement, depuis un état initial donné.
+            - on ne conserve pas le solde de ton compte, mais l'ensembles des mouvements sur ton compte. Le solde c'est juste la somme de ces mouvements.
+            - pour les comptables, c'est un peu la différence qui sépare le bilan et le compte de résultat.
+          -->
+        <section>Les méandres du pattern<img src="./ressources/pattern-es.png" alt="events sourcing" /></section>
+        <!--
+          - command -> fonction de décision -> events -> fonction d'évolution -> state -> action ...
+        -->
         <!-- III - L'architecture de microservices -->
         <section>III - L'architecture de microservices</section>
         <section><p>principe</p></section>
@@ -234,7 +246,8 @@
           Dans la pratique consiste à décrire des workflows de processus métier, au travers de charts (BPMN specification) ou
           directement dans un langage. Au fond cela ressemble un peu au scheduler (ordonnanceur) gros système, pour ceux qui ont connu ;)
 
-          - recouplage des services au travers du système d'orchestration (en contradiction avec l'esprit initiale des MS). 
+          - recouplage des services au travers du système d'orchestration (en contradiction avec l'esprit initiale des MS).
+           -> Le monolithe distribué. 
             Arbitrage isolation/consistence.
         -->
         <section><img
